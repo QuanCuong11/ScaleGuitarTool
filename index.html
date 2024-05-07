@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<meta charset="UTF-8">
+<style>
+*{
+    background-color: #FBF0D9;
+}
+ 
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+ 
+.circleM {
+  width: 20px;
+  height: 20px;
+  line-height: 22px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  color: #f20606;
+  text-align: center;
+  border: 3px solid #f20606;
+  background: linear-gradient(to bottom, #545454 0%, #fdfcfc 100%);
+  position: absolute;
+  margin-left: calc((5% - 26px)/2);
+  margin-right: calc((5% - 26px)/2);
+  margin-top: 2px;
+}
+ 
+.circle {
+  width: 20px;
+  height: 20px;
+  line-height: 22px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  color: #16aa7b;
+  text-align: center;
+  border: 3px solid #209e7c;
+  background: linear-gradient(to bottom, #545454 0%, #fdfcfc 100%);
+  position: absolute;
+  margin-left: calc((5% - 26px)/2);
+  margin-right: calc((5% - 26px)/2);
+  margin-top: 2px;
+}
+ 
+.circleDim {
+  width: 20px;
+  height: 20px;
+  line-height: 22px;
+  border-radius: 50%;
+  font-size: 15px;
+  font-weight: 700;
+  color: #121111;
+  text-align: center;
+  border: 3px solid #868585;
+  background: linear-gradient(to bottom, #545454 0%, #fdfcfc 100%);
+  position: absolute;
+  margin-left: calc((5% - 26px)/2);
+  margin-right: calc((5% - 26px)/2);
+  margin-top: 2px;
+}
+ 
+#randomNumber{
+    font-size: 55px;
+    font-weight: 700;
+    border: none;
+    background-color: #fff;
+    width: 25%;
+    background-color: #FBF0D9;
+    float: left;
+    text-align: center;
+}
+ 
+#randomNumber2{
+    font-size: 55px;
+    font-weight: 700;
+    border: none;
+    background-color: #fff;
+    width: 25%;
+    background-color: #FBF0D9;
+    float: left;
+    text-align: center;
+}
+ 
+#randomNumber3{
+    font-size: 55px;
+    font-weight: 700;
+    border: none;
+    background-color: #fff;
+    width: 25%;
+    background-color: #FBF0D9;
+    float: left;
+    text-align: center;
+}
+
+#hideAllBtn {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+#hideAllBtn:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+#displayAllBtn {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+#displayAllBtn:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+#stopBtn {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+#stopBtn:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+
+#chooseRootNoteBtn {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+
+#chooseRootNoteBtn:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+ 
+.level6 {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: #fff;          
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+ 
+.level6:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+ 
+.level5 {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+ 
+.level5:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+ 
+.level4 {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+ 
+.level4:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+ 
+.level3 {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+ 
+.level3:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+ 
+.level2 {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+ 
+.level2:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+ 
+.level1 {
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: black;            
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+}
+ 
+.level1:hover {
+    background-image: linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%);
+    background-position: right center;
+    color: #fff;
+    text-decoration: none;
+}
+ 
+ 
+ 
+ 
+         
+ 
+</style>
+</head>
+<body>
+<button style="margin-top: 10px;" class="level1" onclick="level1()">Level 1</button>
+<button style="margin-top: 10px;" class="level2" onclick="level2()">Level 2</button>
+<button style="margin-top: 10px;" class="level3" onclick="level3()">Level 3</button>
+<button style="margin-top: 10px;" class="level4" onclick="level4()">Level 4</button>
+<button style="margin-top: 10px;" class="level5" onclick="level5()">Level 5</button>
+<button style="margin-top: 10px;" class="level6" onclick="level6()">Level 6</button>
+<br/>
+ 
+<input type="text" disabled="true" id="randomNumber" name="randomNumber">
+<input type="text" disabled="true" id="randomNumber2" name="randomNumber2">
+<input type="text" disabled="true" id="randomNumber3" name="randomNumber3">
+ 
+ 
+<table id="scalesTable" style="width:100%; margin-top: 1%">
+  <tr class="String 5">
+    <td class="fret 1" style="height: 25px; width: 5%"></td>
+    <td class="fret 2" style="height: 25px; width: 5%"></td>
+    <td class="fret 3" style="height: 25px; width: 5%"></td>
+    <td class="fret 4" style="height: 25px; width: 5%"></td>
+    <td class="fret 5" style="height: 25px; width: 5%"></td>
+    <td class="fret 6" style="height: 25px; width: 5%"></td>
+    <td class="fret 7" style="height: 25px; width: 5%"></td>
+    <td class="fret 8" style="height: 25px; width: 5%"></td>
+    <td class="fret 9" style="height: 25px; width: 5%"></td>
+    <td class="fret 10" style="height: 25px; width: 5%"></td>
+    <td class="fret 11" style="height: 25px; width: 5%"></td>
+    <td class="fret 12" style="height: 25px; width: 5%"></td>
+    <td class="fret 13" style="height: 25px; width: 5%"></td>
+    <td class="fret 14" style="height: 25px; width: 5%"></td>
+    <td class="fret 15" style="height: 25px; width: 5%"></td>
+    <td class="fret 16" style="height: 25px; width: 5%"></td>
+    <td class="fret 17" style="height: 25px; width: 5%"></td>
+    <td class="fret 18" style="height: 25px; width: 5%"></td>
+    <td class="fret 19" style="height: 25px; width: 5%"></td>
+    <td class="fret 20" style="height: 25px; width: 5%"></td>
+  </tr>
+  <tr class="String 4">
+    <td class="fret 1" style="height: 25px; width: 5%"></td>
+    <td class="fret 2" style="height: 25px; width: 5%"><div class="circleM">6</div></td>
+    <td class="fret 3" style="height: 25px; width: 5%"></td>
+    <td class="fret 4" style="height: 25px; width: 5%"><div class="circleDim">7</div></td>
+    <td class="fret 5" style="height: 25px; width: 5%"><div class="circle">1</div></td>
+    <td class="fret 6" style="height: 25px; width: 5%"></td>
+    <td class="fret 7" style="height: 25px; width: 5%"><div class="circleM">2</div></td>
+    <td class="fret 8" style="height: 25px; width: 5%"></td>
+    <td class="fret 9" style="height: 25px; width: 5%"><div class="circleM">3</div></td>
+    <td class="fret 10" style="height: 25px; width: 5%"><div class="circle">4</div></td>
+    <td class="fret 11" style="height: 25px; width: 5%"></td>
+    <td class="fret 12" style="height: 25px; width: 5%"><div class="circle">5</div></td>
+    <td class="fret 13" style="height: 25px; width: 5%"></td>
+    <td class="fret 14" style="height: 25px; width: 5%"><div class="circleM">6</div></td>
+    <td class="fret 15" style="height: 25px; width: 5%"></td>
+    <td class="fret 16" style="height: 25px; width: 5%"><div class="circleDim">7</div></td>
+    <td class="fret 17" style="height: 25px; width: 5%"><div class="circle">1</div></td>
+    <td class="fret 18" style="height: 25px; width: 5%"></td>
+    <td class="fret 19" style="height: 25px; width: 5%"><div class="circleM">2</div></td>
+    <td class="fret 20" style="height: 25px; width: 5%"></td>
+  </tr>
+  <tr class="String 3">
+    <td class="fret 1" style="height: 25px; width: 5%"></td>
+    <td class="fret 2" style="height: 25px; width: 5%"><div class="circleM">3</div></td>
+    <td class="fret 3" style="height: 25px; width: 5%"><div class="circle">4</div></td>
+    <td class="fret 4" style="height: 25px; width: 5%"></td>
+    <td class="fret 5" style="height: 25px; width: 5%"><div class="circle">5</div></td>
+    <td class="fret 6" style="height: 25px; width: 5%"></td>
+    <td class="fret 7" style="height: 25px; width: 5%"><div class="circleM">6</div></td>
+    <td class="fret 8" style="height: 25px; width: 5%"></td>
+    <td class="fret 9" style="height: 25px; width: 5%"><div class="circleDim">7</div></td>
+    <td class="fret 10" style="height: 25px; width: 5%"><div class="circle">1</div></td>
+    <td class="fret 11" style="height: 25px; width: 5%"></td>
+    <td class="fret 12" style="height: 25px; width: 5%"><div class="circleM">2</div></td>
+    <td class="fret 13" style="height: 25px; width: 5%"></td>
+    <td class="fret 14" style="height: 25px; width: 5%"><div class="circleM">3</div></td>
+    <td class="fret 15" style="height: 25px; width: 5%"><div class="circle">4</div></td>
+    <td class="fret 16" style="height: 25px; width: 5%"></td>
+    <td class="fret 17" style="height: 25px; width: 5%"><div class="circle">5</div></td>
+    <td class="fret 18" style="height: 25px; width: 5%"></td>
+    <td class="fret 19" style="height: 25px; width: 5%"><div class="circleM">6</div></td>
+    <td class="fret 20" style="height: 25px; width: 5%"></td>
+  </tr>
+  <tr class="String 2">
+    <td class="fret 1" style="height: 25px; width: 5%"></td>
+    <td class="fret 2" style="height: 25px; width: 5%"><div class="circleDim">7</div></td>
+    <td class="fret 3" style="height: 25px; width: 5%"><div class="circle">1</div></td>
+    <td class="fret 4" style="height: 25px; width: 5%"></td>
+    <td class="fret 5" style="height: 25px; width: 5%"><div class="circleM">2</div></td>
+    <td class="fret 6" style="height: 25px; width: 5%"></td>
+    <td class="fret 7" style="height: 25px; width: 5%"><div class="circleM">3</div></td>
+    <td class="fret 8" style="height: 25px; width: 5%"><div class="circle">4</div></td>
+    <td class="fret 9" style="height: 25px; width: 5%"></td>
+    <td class="fret 10" style="height: 25px; width: 5%"><div class="circle">5</div></td>
+    <td class="fret 11" style="height: 25px; width: 5%"></td>
+    <td class="fret 12" style="height: 25px; width: 5%"><div class="circleM">6</div></td>
+    <td class="fret 13" style="height: 25px; width: 5%"></td>
+    <td class="fret 14" style="height: 25px; width: 5%"><div class="circleDim">7</div></td>
+    <td class="fret 15" style="height: 25px; width: 5%"><div class="circle">1</div></td>
+    <td class="fret 16" style="height: 25px; width: 5%"></td>
+    <td class="fret 17" style="height: 25px; width: 5%"><div class="circleM">2</div></td>
+    <td class="fret 18" style="height: 25px; width: 5%"></td>
+    <td class="fret 19" style="height: 25px; width: 5%"><div class="circleM">3</div></td>
+    <td class="fret 20" style="height: 25px; width: 5%"><div class="circle">4</div></td>
+  </tr>
+  <tr class="String 1">
+    <td class="fret 1" style="height: 25px; width: 5%"><div class="circle">4</div></td>
+    <td class="fret 2" style="height: 25px; width: 5%"></td>
+    <td class="fret 3" style="height: 25px; width: 5%"><div class="circle">5</div></td>
+    <td class="fret 4" style="height: 25px; width: 5%"></td>
+    <td class="fret 5" style="height: 25px; width: 5%"><div class="circleM">6</div></td>
+    <td class="fret 6" style="height: 25px; width: 5%"></td>
+    <td class="fret 7" style="height: 25px; width: 5%"><div class="circleDim">7</div></td>
+    <td class="fret 8" style="height: 25px; width: 5%"><div class="circle">1</div></td>
+    <td class="fret 9" style="height: 25px; width: 5%"></td>
+    <td class="fret 10" style="height: 25px; width: 5%"><div class="circleM">2</div></td>
+    <td class="fret 11" style="height: 25px; width: 5%"></td>
+    <td class="fret 12" style="height: 25px; width: 5%"><div class="circleM">3</div></td>
+    <td class="fret 13" style="height: 25px; width: 5%"><div class="circle">4</div></td>
+    <td class="fret 14" style="height: 25px; width: 5%"></td>
+    <td class="fret 15" style="height: 25px; width: 5%"><div class="circle">5</div></td>
+    <td class="fret 16" style="height: 25px; width: 5%"></td>
+    <td class="fret 17" style="height: 25px; width: 5%"><div class="circleM">6</div></td>
+    <td class="fret 18" style="height: 25px; width: 5%"></td>
+    <td class="fret 19" style="height: 25px; width: 5%"><div class="circleDim">7</div></td>
+    <td class="fret 20" style="height: 25px; width: 5%"><div class="circle">1</div></td>
+  </tr>
+</table>
+<button style="margin-top: 2%;" id="hideAllBtn" onclick="hideAll()">Hide All</button>
+<button style="margin-top: 2%;" id="displayAllBtn" onclick="displayAll()">Display All</button>
+<button style="margin-top: 2%;" id="stopBtn" onclick="stop()">Stop</button>
+<button style="margin-top: 2%;" id="chooseRootNoteBtn" onclick="chooseRootNote()">Choose Root Note</button>
+<span>max point: </span> <span id="maxPoint"></span> <span>★</span>
+<div style="position: absolute; width: 100%; text-align: center;">
+    <span id="totalStar" style="color: #02AAB0; font-size: 40px;" ></span>
+    <span id="star" style="color: #00CDAC; font-size: 50px">★</span>
+</div>
+<script>
+var myInterval;
+var chooseRootNoteVar = true;
+var rootNote;
+var totalStarVar = 0;
+var maxPointVar = 0;
+$(document).ready(function() {
+    $("tr td").click(function(e) {
+        // trường hợp chọn nốt gốc hiển thị thì set vàng
+        if(chooseRootNoteVar == true){
+            chooseRootNoteVar = false;
+            rootNote = this;
+ 
+            $(this).css("background-color", "yellow");
+            $(this).find("div").css({
+                "display": "block"
+            });
+        }else {
+            // trường hợp khi vào game
+            var currentTD = this; // Lưu trữ this vào một biến
+            // trường hợp số random trùng với số trên td thì set xanh và hiện nốt đấy lên nửa giây
+            if ($("input[id='randomNumber']").val() && $("input[id='randomNumber']").val() == $(this).find("div").text()) {
+                // nếu chọn đúng sẽ tăng giá trị cho star lên 1
+                totalStarVar = totalStarVar + 1;
+                setValueStar();
+ 
+                $(this).css("background-color", "green");
+                $(this).find("div").css({
+                    "display": "block"
+                });
+                setTimeout(function() {
+                    $(currentTD).css("background-color", "#FBF0D9");
+                    if(currentTD != rootNote){
+                        $(currentTD).find("div").css({
+                            "display": "none"
+                        });
+                    }
+                    e.stopPropagation();
+                }, 500);
+            } else {
+                // nếu chọn sai sẽ set lại star = 0
+                totalStarVar = 0;
+                setValueStar();
+ 
+                // trường hợp số random không trùng với số trên td thì set đỏ
+                $(this).css("background-color", "red");
+                setTimeout(function() {
+                    $(currentTD).css("background-color", "#FBF0D9");
+                    e.stopPropagation();
+                }, 500);
+            }
+        }
+    });
+});
+ 
+function setValueStar(){
+    $('#totalStar').css({"color": "#07ecf4", "font-size": "50px"}).fadeOut(200, function() {
+        $("span[id='totalStar']").css({"color": "#02AAB0", "font-size": "40px"}).text(totalStarVar).fadeIn(200);
+    });
+    $('#star').css({"color": "#04fad1", "font-size": "60px"}).fadeOut(200, function() {
+        $('#star').css({"color": "#00CDAC", "font-size": "50px"}).fadeIn(200);
+    });
+ 
+    if(totalStarVar > maxPointVar){
+        maxPointVar = totalStarVar;
+        $("span[id='maxPoint']").text(maxPointVar);
+    }
+}
+ 
+function hideAll() {
+	clearAllCssButtonAction();
+    $("button[id='hideAllBtn']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+	
+    $("div[class*='circle']").css({"display": "none"});
+    $("td").css("background-color", "#FBF0D9");
+    $(rootNote).find("div").css({"display": "block"});
+    chooseRootNoteVar = false;
+}
+ 
+function displayAll() {
+	clearAllCssButtonAction();
+    $("button[id='displayAllBtn']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+
+    $("div[class*='circle']").css({"display": "block"});
+}
+ 
+var isRunning = false;
+function randomNumber() {
+    if (!isRunning) {
+        isRunning = true;
+        // random number from 1 to 7
+        console.log("1")
+        setValueInput();
+        isRunning = false;
+    }
+}
+ 
+function setValueInput() {
+    $("input[id='randomNumber']").val(Math.floor(Math.random() * 7) + 1);
+ 
+    $("#randomNumber2").val($("input[id='randomNumber']").val());
+    $("#randomNumber3").val($("input[id='randomNumber']").val());
+}
+ 
+function stop() {
+	clearAllCssButtonAction();
+    $("button[id='stopBtn']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+
+    clearInterval(myInterval);
+    $("input[id='randomNumber']").val("");
+	$("input[id='randomNumber2']").val("");
+	$("input[id='randomNumber3']").val("");
+}
+ 
+function chooseRootNote() {
+	clearAllCssButtonAction();
+    $("button[id='chooseRootNoteBtn']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+	
+    chooseRootNoteVar = true;
+}
+ 
+function level1() {
+    clearAllCssButtonLevel();
+    $("button[class='level1']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+    clearInterval(myInterval);
+    setValueInput();
+    myInterval = setInterval(randomNumber,1000);
+}
+ 
+function level2() {
+    clearAllCssButtonLevel();
+    $("button[class='level2']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+    clearInterval(myInterval);
+    setValueInput();
+    myInterval = setInterval(randomNumber,2000);
+}
+ 
+function level3() {
+    clearAllCssButtonLevel();
+    $("button[class='level3']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+    clearInterval(myInterval);
+    setValueInput();
+    myInterval = setInterval(randomNumber,3000);
+}
+ 
+function level4() {
+    clearAllCssButtonLevel();
+    $("button[class='level4']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+    clearInterval(myInterval);
+    setValueInput();
+    myInterval = setInterval(randomNumber,4000);
+}
+ 
+function level5() {
+    clearAllCssButtonLevel();
+    $("button[class='level5']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+    clearInterval(myInterval);
+    setValueInput();
+    myInterval = setInterval(randomNumber,5000);
+}
+ 
+function level6() {
+    clearAllCssButtonLevel();
+    $("button[class='level6']").css({"background-image": "linear-gradient(to right, #02AAB0 0%, #00CDAC  51%, #02AAB0  100%)", "color": "#fff"});
+    clearInterval(myInterval);
+    setValueInput();
+    myInterval = setInterval(randomNumber,6000);
+}
+ 
+function clearAllCssButtonLevel() {
+    $("button[class='level1']").css({"background-image": "none", "color": "#000"});
+    $("button[class='level2']").css({"background-image": "none", "color": "#000"});
+    $("button[class='level3']").css({"background-image": "none", "color": "#000"});
+    $("button[class='level4']").css({"background-image": "none", "color": "#000"});
+    $("button[class='level5']").css({"background-image": "none", "color": "#000"});
+    $("button[class='level6']").css({"background-image": "none", "color": "#000"});
+}
+
+function clearAllCssButtonAction() {
+    $("button[id='hideAllBtn']").css({"background-image": "none", "color": "#000"});
+    $("button[id='displayAllBtn']").css({"background-image": "none", "color": "#000"});
+    $("button[id='stopBtn']").css({"background-image": "none", "color": "#000"});
+    $("button[id='chooseRootNoteBtn']").css({"background-image": "none", "color": "#000"});
+}
+</script>
+ 
+</body>
+</html>
